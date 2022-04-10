@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "inquirer": "^8.2.2"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1"
+  },
+  "name": "challenge-10",
+  "description": "- For the tenth challenge of my bootcamp, I am tasked with creating a intricate team profile generator with all the skills I have learned over the past 9 assignments. I will be utilizing html, css, js, oop + jest functionality, and more. Below are the criteria and relevant information.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jared-ruiz/Team-Profile-Generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jared-ruiz/Team-Profile-Generator/issues"
+  },
+  "homepage": "https://github.com/jared-ruiz/Team-Profile-Generator#readme"
+}

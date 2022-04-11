@@ -11,25 +11,42 @@ const managerPrompt = () => {
     return inquirer.prompt([
         {
             type: 'input',
-            name: 'name',
-            message: 'What is your name?'
+            name: 'managerName',
+            message: 'What is your managers name?'
         },
         {
             type: 'input',
-            name: 'id',
+            name: 'managerId',
             message: 'Please input your work ID.'
         },
         {
             type: 'input',
-            name: 'email',
+            name: 'managerEmail',
             message: 'Please input your current work email.'
         },
         {
             type: 'input',
             name: 'officeNumber',
             message: 'Please input your office number.'
+        },
+        {
+            type: 'confirm',
+            name: 'confirmTeamMembers',
+            message: 'Would you like to add team members?',
+            default: true
         }
     ])
+    //check if the manager wants to add team members, if so run next function
+    .then((managerInfo) => {
+        //push manager object to array first then check for more employees
+        managerInfo.push(teamArray);
+        if (managerInfo.confirmTeamMembers) {
+            addTeam();
+        }
+        else {
+            return teamArray;
+        }
+    })
 }   
 
 managerPrompt()
@@ -37,14 +54,6 @@ managerPrompt()
     .then((answers) => {
         const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
         console.log(manager);
-        console.log(manager.getId());
     })
-    
-    //prompt for the managers input first
-
-    // inquirer.prompt(standardQuestions).then((answers) => {
-    //     const employee = new Employee(answers.name, answers.id, answers.email);
-    //     console.log(employee);
-    // })
 
 

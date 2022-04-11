@@ -38,23 +38,69 @@ const managerPrompt = () => {
     ])
     // check if the manager wants to add team members, if so run next function
     .then((managerInfo) => {
-        //push manager object to array first then check for more employees
-        teamArray.push(managerInfo);
         if (managerInfo.confirmTeamMembers) {
+            //create manager object
+            const manager = new Manager(managerInfo.managerName, managerInfo.managerId, managerInfo.managerEmail, managerInfo.officeNumber, managerInfo.confirmTeamMembers);
+
+            //push manager object to array
+            teamArray.push(manager);
+
+            console.log(teamArray);
+
+            //run addTeam function
             addTeam();
         }
         else {
+            //create manager object
+            const manager = new Manager(managerInfo.managerName, managerInfo.managerId, managerInfo.managerEmail, managerInfo.officeNumber, managerInfo.confirmTeamMembers);
+
+            //push manager object to array
+            teamArray.push(manager);
+
+            console.log(teamArray);
+            
+            //return manager info
             return managerInfo;
         }
     })
-}   
+}  
 
-managerPrompt()
-
-    .then((answers) => {
-        const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.officeNumber, answers.confirmTeamMembers);
-        console.log(manager);
-        console.log(teamArray)
+const addTeam = () => {
+    return inquirer.prompt([
+        {
+            type: 'list',
+            name: 'employeeChoice',
+            message: 'Please select what type of team member you would like to add.',
+            choices: ['Engineer', 'Intern', 'Employee']
+        }
+    ])
+    .then(addTeamInfo => {
+        if (addTeam.employeeChoice === 'Engineer') {
+            addEngineer();
+        }
+        else if (addTeam.employeeChoice === 'Intern') {
+            addIntern();
+        }
+        else {
+            addEmployee();
+        }
     })
+}
 
+const addEngineer = () => {
+    console.log(teamArray);
+    console.log('You chose Engineer!');
+}
 
+const addIntern = () => {
+    console.log(teamArray);
+    console.log('You choise Intern!');
+}
+
+const addEmployee = () => {
+    console.log(teamArray);
+    console.log('You chose Employee!');
+}
+
+//initialize 
+managerPrompt()

@@ -1,9 +1,12 @@
-const Employee = require('./lib/Employee');
-const inquirer = require ('inquirer');
 const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
+const Employee = require('./lib/Employee');
+
+const inquirer = require ('inquirer');
 // const fs = require('fs');
 
-//ill push every obj created here
+//team array that will be used to populate html later
 const teamArray = [];
 
 //asks questions about manager
@@ -75,10 +78,10 @@ const addTeam = () => {
         }
     ])
     .then(addTeamInfo => {
-        if (addTeam.employeeChoice === 'Engineer') {
+        if (addTeamInfo.employeeChoice === 'Engineer') {
             addEngineer();
         }
-        else if (addTeam.employeeChoice === 'Intern') {
+        else if (addTeamInfo.employeeChoice === 'Intern') {
             addIntern();
         }
         else {
@@ -88,18 +91,170 @@ const addTeam = () => {
 }
 
 const addEngineer = () => {
-    console.log(teamArray);
-    console.log('You chose Engineer!');
+    // console.log(teamArray);
+    // console.log('You chose Engineer!');
+    return inquirer.prompt([
+        {
+            type: 'input',
+            name: 'engineerName',
+            message: 'Please input the name of the Engineer you wish to add.'
+        },
+        {
+            type: 'input',
+            name: 'engineerId',
+            message: 'Please input the ID of the Engineer you wish to add.'
+        },
+        {
+            type: 'input',
+            name: 'engineerEmail',
+            message: 'Please input the email of the Engineer you wish to add.'
+        },
+        {
+            type: 'input',
+            name: 'engineerGithub',
+            message: "What is your engineers GitHub username?"
+        },
+        {
+            type: 'confirm',
+            name: 'confirmTeamMembers',
+            message: 'Would you like to add another team member?',
+            default: false
+        }
+    ])
+    .then((engineerInfo) => {
+        if(engineerInfo.confirmTeamMembers) {
+            //create Engineer object
+            var engineer = new Engineer(engineerInfo.engineerName, engineerInfo.engineerId, engineerInfo.engineerEmail, engineerInfo.engineerGithub);
+
+            //push object to teamArray
+            teamArray.push(engineer);
+
+            console.log(teamArray);
+
+            //call addTeam() function
+            addTeam();
+        }
+        else {
+            //create Engineer object
+            const engineer = new Engineer(engineerInfo.engineerName, engineerInfo.engineerId, engineerInfo.engineerEmail, engineerInfo.engineerGithub);
+
+            //push object to teamArray
+            teamArray.push(engineer);
+
+            console.log(teamArray);
+
+            //return engineerInfo
+            return engineerInfo;
+        }
+    })
 }
 
 const addIntern = () => {
-    console.log(teamArray);
-    console.log('You choise Intern!');
+    return inquirer.prompt([
+        {
+            type: 'input',
+            name: 'internName',
+            message: "What is your intern's name?"
+        },
+        {
+            type: 'input',
+            name: 'internId',
+            message: "Please input the ID of the Intern you wish to add."
+        },
+        {
+            type: 'input',
+            name: 'internEmail',
+            message: 'What is the email of the Intern you wish to add?'
+        },
+        {
+            type: 'input',
+            name: 'internSchool',
+            message: 'What is the school your intern is attending?'
+        },
+        {
+            type: 'confirm',
+            name: 'confirmTeamMembers',
+            message: 'Would you like to add another team member?',
+            default: false
+        }
+    ])
+    .then((internInfo) => {
+        if(internInfo.confirmTeamMembers) {
+            //create Intern object
+            const intern = new Intern(internInfo.internName, internInfo.internId, internInfo.internEmail, internInfo.internSchool);
+        
+            //push object into teamArray
+            teamArray.push(intern);
+
+            //call addTeam() function
+            addTeam();
+        }
+        else {
+            //create Intern Object
+            const intern = new Intern(internInfo.internName, internInfo.internId, internInfo.internEmail, internInfo.internSchool);
+        
+            //push object into teamArray
+            teamArray.push(intern);
+
+            console.log(teamArray);
+
+            //return internInfo
+            return internInfo;
+        }
+    })
 }
 
 const addEmployee = () => {
-    console.log(teamArray);
-    console.log('You chose Employee!');
+    // console.log(teamArray);
+    // console.log('You chose Employee!');
+    return inquirer.prompt([
+        {
+            type: 'input',
+            name: 'employeeName',
+            message: 'What is the name of the Employee you wish to add?'
+        },
+        {
+            type: 'input',
+            name: 'employeeId',
+            message: "Please input the ID of the Employee you wish to add."
+        },
+        {
+            type: 'input',
+            name: 'employeeEmail',
+            message: 'What is the email of the Employee you wish to add?'
+        },
+        {
+            type: 'confirm',
+            name: 'confirmTeamMembers',
+            message: 'Would you like to add another team member?',
+            default: false
+        }
+    ])
+    .then((employeeInfo) => {
+        if(employeeInfo.confirmTeamMembers) {
+            //create Employee object
+            const employee = new Employee(employeeInfo.employeeName, employeeInfo.employeeId, employeeInfo.employeeEmail); 
+        
+            //push object into array
+            teamArray.push(employee);
+
+            console.log(teamArray);
+
+            addTeam();
+        }
+        else {
+            //create Employee object
+            const employee = new Employee(employeeInfo.employeeName, employeeInfo.employeeId, employeeInfo.employeeEmail); 
+        
+            //push object into array
+            teamArray.push(employee);
+
+            console.log(teamArray);
+
+            //return employeeInfo
+            return employeeInfo;
+        }
+    })
 }
 
 //initialize 

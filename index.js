@@ -4,7 +4,7 @@ const Manager = require('./lib/Manager');
 // const fs = require('fs');
 
 //ill push every obj created here
-teamArray = [];
+const teamArray = [];
 
 //asks questions about manager
 const managerPrompt = () => {
@@ -36,15 +36,15 @@ const managerPrompt = () => {
             default: true
         }
     ])
-    //check if the manager wants to add team members, if so run next function
+    // check if the manager wants to add team members, if so run next function
     .then((managerInfo) => {
         //push manager object to array first then check for more employees
-        managerInfo.push(teamArray);
+        teamArray.push(managerInfo);
         if (managerInfo.confirmTeamMembers) {
             addTeam();
         }
         else {
-            return teamArray;
+            return managerInfo;
         }
     })
 }   
@@ -52,8 +52,9 @@ const managerPrompt = () => {
 managerPrompt()
 
     .then((answers) => {
-        const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
+        const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.officeNumber, answers.confirmTeamMembers);
         console.log(manager);
+        console.log(teamArray)
     })
 
 

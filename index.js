@@ -1,10 +1,13 @@
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
-const Employee = require('./lib/Employee');
+// const Employee = require('./lib/Employee');
+
+const generateHtml = require('./src/generateHtml');
 
 const inquirer = require ('inquirer');
-// const fs = require('fs');
+const fs = require('fs');
+const { resolve } = require('path');
 
 //team array that will be used to populate html later
 const teamArray = [];
@@ -63,29 +66,27 @@ const managerPrompt = () => {
             console.log(teamArray);
             
             //return manager info
-            return managerInfo;
+            return createHtml(teamArray);
         }
     })
 }  
 
+//delete employee later
 const addTeam = () => {
     return inquirer.prompt([
         {
             type: 'list',
             name: 'employeeChoice',
             message: 'Please select what type of team member you would like to add.',
-            choices: ['Engineer', 'Intern', 'Employee']
+            choices: ['Engineer', 'Intern']
         }
     ])
     .then(addTeamInfo => {
         if (addTeamInfo.employeeChoice === 'Engineer') {
             addEngineer();
         }
-        else if (addTeamInfo.employeeChoice === 'Intern') {
-            addIntern();
-        }
         else {
-            addEmployee();
+            addIntern();
         }
     })
 }
@@ -144,7 +145,7 @@ const addEngineer = () => {
             console.log(teamArray);
 
             //return engineerInfo
-            return engineerInfo;
+            return createHtml(teamArray);
         }
     })
 }
@@ -199,62 +200,88 @@ const addIntern = () => {
             console.log(teamArray);
 
             //return internInfo
-            return internInfo;
+            return createHtml(teamArray);
         }
     })
 }
 
-const addEmployee = () => {
-    // console.log(teamArray);
-    // console.log('You chose Employee!');
-    return inquirer.prompt([
-        {
-            type: 'input',
-            name: 'employeeName',
-            message: 'What is the name of the Employee you wish to add?'
-        },
-        {
-            type: 'input',
-            name: 'employeeId',
-            message: "Please input the ID of the Employee you wish to add."
-        },
-        {
-            type: 'input',
-            name: 'employeeEmail',
-            message: 'What is the email of the Employee you wish to add?'
-        },
-        {
-            type: 'confirm',
-            name: 'confirmTeamMembers',
-            message: 'Would you like to add another team member?',
-            default: false
-        }
-    ])
-    .then((employeeInfo) => {
-        if(employeeInfo.confirmTeamMembers) {
-            //create Employee object
-            const employee = new Employee(employeeInfo.employeeName, employeeInfo.employeeId, employeeInfo.employeeEmail); 
+// const addEmployee = () => {
+//     // console.log(teamArray);
+//     // console.log('You chose Employee!');
+//     return inquirer.prompt([
+//         {
+//             type: 'input',
+//             name: 'employeeName',
+//             message: 'What is the name of the Employee you wish to add?'
+//         },
+//         {
+//             type: 'input',
+//             name: 'employeeId',
+//             message: "Please input the ID of the Employee you wish to add."
+//         },
+//         {
+//             type: 'input',
+//             name: 'employeeEmail',
+//             message: 'What is the email of the Employee you wish to add?'
+//         },
+//         {
+//             type: 'confirm',
+//             name: 'confirmTeamMembers',
+//             message: 'Would you like to add another team member?',
+//             default: false
+//         }
+//     ])
+//     .then((employeeInfo) => {
+//         if(employeeInfo.confirmTeamMembers) {
+//             //create Employee object
+//             const employee = new Employee(employeeInfo.employeeName, employeeInfo.employeeId, employeeInfo.employeeEmail); 
         
-            //push object into array
-            teamArray.push(employee);
+//             //push object into array
+//             teamArray.push(employee);
 
-            console.log(teamArray);
+//             console.log(teamArray);
 
-            addTeam();
-        }
-        else {
-            //create Employee object
-            const employee = new Employee(employeeInfo.employeeName, employeeInfo.employeeId, employeeInfo.employeeEmail); 
+//             addTeam();
+//         }
+//         else {
+//             //create Employee object
+//             const employee = new Employee(employeeInfo.employeeName, employeeInfo.employeeId, employeeInfo.employeeEmail); 
         
-            //push object into array
-            teamArray.push(employee);
+//             //push object into array
+//             teamArray.push(employee);
 
-            console.log(teamArray);
+//             console.log(teamArray);
 
-            //return employeeInfo
-            return employeeInfo;
-        }
+//             //return employeeInfo
+//             return employeeInfo;
+//         }
+//     })
+// }
+
+//create html
+const writeToFile = (fileName, data) => {
+    return new Promise((resolve, reject) => {
+        fs.writeFile(fileName, data, err => {
+            if (err) {
+                reject(err);
+                return;
+            }
+            else {
+                resolve({
+                    ok: true,
+                    message: 'File Created!'
+                })
+                console.log('HTML file created successfully!');
+            }
+        })
     })
+}
+
+//pass file to writeFile function
+const createHtml = (teamArray) => {
+    const template = generateHtml(teamArray);
+
+    writeToFile('./dist/index.html', template);
 }
 
 //initialize 

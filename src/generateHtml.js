@@ -22,7 +22,7 @@ const addManagerSection = (teamArray) => {
                         <h5 class="card-title">Manager</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Name: ${managerInfo.name}</h6>
                         <p class="card-text">ID: ${managerInfo.id}</p>
-                        <p class="card-text">Email: ${managerInfo.email}</p>
+                        <p class="card-text">Email: <a href="mailto:name@email.com">${managerInfo.email}</a></p>
                         <p class="card-text">Office #: ${managerInfo.officeNumber}</small></p>
                     </div>`
     }
@@ -42,8 +42,8 @@ const addEngineerSection = (arr) => {
                         <h5 class="card-title">Engineer</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Name: ${engineer.name}</h6>
                         <p class="card-text">ID: ${engineer.id}</p>
-                        <p class="card-text">Email: ${engineer.email}</p>
-                        <p class="card-text">GitHub: ${engineer.github}</small></p>
+                        <p class="card-text">Email: <a href="mailto:name@email.com">${engineer.email}</a></p>
+                        <p class="card-text"><small>GitHub: <a href="https://github.com/${engineer.github}">${engineer.github}</a></small></p>
                     </div>`
             engineerHtml.push(engineerEl);
         })
@@ -66,8 +66,8 @@ const addInternSection = (arr) => {
                             <h5 class="card-title">Intern</h5>
                             <h6 class="card-subtitle mb-2 text-muted">Name: ${intern.name}</h6>
                             <p class="card-text">ID: ${intern.id}</p>
-                            <p class="card-text">Email: ${intern.email}</p>
-                            <p class="card-text">School: ${intern.github}</small></p>
+                            <p class="card-text">Email: <a href="mailto:name@email.com">${intern.email}</a></p>
+                            <p class="card-text">School: ${intern.school}</small></p>
                     </div>`
             internHtml.push(internEl);
         })

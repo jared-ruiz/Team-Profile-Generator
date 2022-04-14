@@ -1,0 +1,11 @@
+.bgColor h1 {
+    background-color: rgb(223, 145, 145);
+}
+
+.bgColor p {
+    background-color: lightgreen;
+}
+
+.cardBackground {
+    background-color: rgb(247, 155, 119);
+}

@@ -39,6 +39,39 @@ GIVEN a command-line application that accepts user input
 
 ## Table of Contents
 ---
+- [Installation](#installation)
+- [Usage](#usage)
+- [License Information](#license-information)
+- [Questions](#questions)
+- [Working Example of Project](#working-example-of-project)
+
+## Installation
+---
+- Download repository, make sure you are in the root directory, then type "npm install" to begin installing all the dependencies that are required for this application to run. Check to see if the package.json is installed successfully.
+
+- After installation, run "node index" in the terminal and answer all the prompts as you see fit.
+
+## Usage
+---
+- The main usage of this program is to prompt you for the name of your current manager and then proceed to add any additional engineers or interns that may or may not be on your team. Once completed, you will be provided with a styled index.html to view your team members on easily.
+
+## License Information
+---
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+<br/>
+
+## Questions
+---
+If you have any further questions, contact me here: [GitHub](https://github.com/jared-ruiz)
+
+## Working Example of Project
+---
+
+![Gif](./src/Team-Generator%20Example.gif)
 
 ## Weekly Reflection
---
+---
+
+This assignment tested my endurance. There was so much to think about and so much to consider when creating this application that I almost got overwhelmed. I learned a lot about how files are created using 'fs' and promises, and the route I took with creating the actual html was an interesting experience as well, given the fact that I had not touched html or css in quite some time it feels. I did my best to stick close to the criteria and made sure everything functioned as intended. The challenges are getting very difficult and It's requiring more and more time and sleepless nights to get them done. I'm fully capable of learning, the pace is rough but at the end of this, I will have a decent grasp on most things I will need to start getting me off the ground. It's motivating! Here's to another week! 
+
+-J

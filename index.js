@@ -205,59 +205,6 @@ const addIntern = () => {
     })
 }
 
-// const addEmployee = () => {
-//     // console.log(teamArray);
-//     // console.log('You chose Employee!');
-//     return inquirer.prompt([
-//         {
-//             type: 'input',
-//             name: 'employeeName',
-//             message: 'What is the name of the Employee you wish to add?'
-//         },
-//         {
-//             type: 'input',
-//             name: 'employeeId',
-//             message: "Please input the ID of the Employee you wish to add."
-//         },
-//         {
-//             type: 'input',
-//             name: 'employeeEmail',
-//             message: 'What is the email of the Employee you wish to add?'
-//         },
-//         {
-//             type: 'confirm',
-//             name: 'confirmTeamMembers',
-//             message: 'Would you like to add another team member?',
-//             default: false
-//         }
-//     ])
-//     .then((employeeInfo) => {
-//         if(employeeInfo.confirmTeamMembers) {
-//             //create Employee object
-//             const employee = new Employee(employeeInfo.employeeName, employeeInfo.employeeId, employeeInfo.employeeEmail); 
-        
-//             //push object into array
-//             teamArray.push(employee);
-
-//             console.log(teamArray);
-
-//             addTeam();
-//         }
-//         else {
-//             //create Employee object
-//             const employee = new Employee(employeeInfo.employeeName, employeeInfo.employeeId, employeeInfo.employeeEmail); 
-        
-//             //push object into array
-//             teamArray.push(employee);
-
-//             console.log(teamArray);
-
-//             //return employeeInfo
-//             return employeeInfo;
-//         }
-//     })
-// }
-
 //create html
 const writeToFile = (fileName, data) => {
     return new Promise((resolve, reject) => {

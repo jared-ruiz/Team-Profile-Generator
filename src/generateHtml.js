@@ -18,14 +18,12 @@ const addManagerSection = (teamArray) => {
     else {
         const managerInfo = teamArray[0];
 
-        return `<div class="card">
-                        <div class="card">
-                            <h5 class="card-title">Manager</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Name: ${managerInfo.name}</h6>
-                            <p class="card-text">ID: ${managerInfo.id}</p>
-                            <p class="card-text">Email: ${managerInfo.email}</p>
-                            <p class="card-text">Office #: ${managerInfo.officeNumber}</small></p>
-                        </div>
+        return `<div class="card cardBackground">
+                        <h5 class="card-title">Manager</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Name: ${managerInfo.name}</h6>
+                        <p class="card-text">ID: ${managerInfo.id}</p>
+                        <p class="card-text">Email: ${managerInfo.email}</p>
+                        <p class="card-text">Office #: ${managerInfo.officeNumber}</small></p>
                     </div>`
     }
 }
@@ -40,7 +38,7 @@ const addEngineerSection = (arr) => {
             console.log(engineer);
             console.log(engineer.name);
                 var engineerEl = `
-                    <div class="card">
+                    <div class="card cardBackground">
                         <h5 class="card-title">Engineer</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Name: ${engineer.name}</h6>
                         <p class="card-text">ID: ${engineer.id}</p>
@@ -64,7 +62,7 @@ const addInternSection = (arr) => {
             console.log(intern);
             console.log(intern.name);
                 var internEl = `
-                    <div class="card">
+                    <div class="card cardBackground">
                             <h5 class="card-title">Intern</h5>
                             <h6 class="card-subtitle mb-2 text-muted">Name: ${intern.name}</h6>
                             <p class="card-text">ID: ${intern.id}</p>
@@ -96,13 +94,13 @@ const generateHtml = (teamArray) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="../src/style.css">
         <title>Team Generator</title>
     </head>
 
     <body>
         <header>
-            <div class="hero">
+            <div class="hero bgColor">
                 <h1 class ="p-5 test-uppercase m-0 text-center text-black">Team Generator</h1>
                 ${generateHeader(teamArray)}
             </div>
